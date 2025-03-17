@@ -1,3 +1,4 @@
+projects:
 - name: taxprod
   dir: taxprod
   workflow: terraeasy
