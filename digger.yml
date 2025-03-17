@@ -3,7 +3,7 @@ projects:
   dir: taxprod
   workflow: terraeasy
   include_patterns: ["./common/**","modules/**"]
-auto_merge: true
+  auto_merge: true
 
 workflows:
   terraeasy:
