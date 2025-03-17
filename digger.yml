@@ -1,0 +1,26 @@
+- name: taxprod
+  dir: taxprod
+  workflow: terraeasy
+  include_patterns: ["./common/**","modules/**"]
+auto_merge: true
+
+workflows:
+  terraeasy:
+    plan:
+      steps:
+        - run: "cd ../ && ./digger-setup.sh $PROJECT_NAME"
+          shell: bash
+        - init:
+          extra_args: ["-backend-config=digger-backend.tfvars"]
+        - run: echo "Starting to run a plan"
+        - plan:
+          extra_args: ["-var-file=digger-state.tfvars"]
+    apply:
+      steps:
+        - run: "cd ../ && ./digger-setup.sh $PROJECT_NAME"
+          shell: bash
+        - init:
+          extra_args: ["-backend-config=digger-backend.tfvars"]
+        - run: echo "Starting to run a apply"
+        - apply:
+          extra_args: ["-var-file=digger-state.tfvars"]
